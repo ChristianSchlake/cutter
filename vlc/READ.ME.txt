@@ -1,0 +1,86 @@
+
+                        Vlc Web Control Panel
+
+
+  PURPOSE
+  -------
+
+  The VLC Web Control Panel(VWCP) is a cross-browser solution for 
+  controlling the vlc web-plugins (Mozilla and ActiveX) with a 
+  full-functioned graphic user interface(GUI).  It contains 
+  HTML and CSS styling for the graphics and supports basic 
+  media player functions using javascript to manipulate the plugin API.
+
+
+  Latest Version
+  --------------
+
+  This is the latest version: 0.9.2.  Details on updates and 
+  future releases can be found here as they come out: 
+  http://atsiko.wordpress.com/vlc-web-control-panel/
+
+
+  Documentation
+  -------------
+
+  The documentation for the VLC WebPlugin may be found here: 
+  http://wiki.videolan.org/Documentation:WebPlugin
+
+  You can download VLC Media Player here:
+  http://www.videolan.org/
+
+  You may post questions about VLC here:
+  http://forum.videolan.org/
+
+
+  MANIFEST
+  --------
+
+  This zip archive contains two javascript libraries, 
+  an external CSS file, and an example HTML page 
+  with the required framework to display the panel and 
+  plugin on a webpage.  There is also a folder 
+  containing the minimum required image set to 
+  display the buttons.  Please see the included README 
+  and CHANGELOG files for changes from the previous version.
+
+
+  INSTALLATION
+  ------------
+
+  In order to properly embed the control panel in a webpage, 
+  all image files must be contained in their original directories.
+  However, they do not need to remain in the same directory 
+  as the HTML or video files.  Please see the VWCPconfig.js file
+  for more details.
+
+  In order to properly access the functions and images,
+  you will need to place all the html in the body of the example
+  html file in your html file where you wish it to appear in the page.
+  You will also need to insert the .js and CSS references 
+  into the head of the document, and set the onload function
+  of the body element to "trackselect()".  Alternatively, you may place
+  call to the function within another function on body load.
+
+
+  Licensing
+  ---------
+
+  You may learn about VLC Media Players licensing here:
+  http://www.videolan.org/support/faq.html
+
+
+  Contact and Support
+  -------------------
+
+  You may use the VLC WebPlugin documentation for help, or you may
+  contact me at the address on my blog contact page.  Please report bugs
+  with comments here: 
+  http://atsiko.wordpress.com/vlc-web-control-panel/
+
+  
+  Acknowledgements
+  ----------------
+
+  N/A
+

@@ -1,0 +1,160 @@
+.button
+    {
+    cursor:pointer;
+    }
+.drag
+    {
+    cursor:pointer;
+    }
+
+#vlcset
+    {
+    position:relative;
+    background-color:silver;
+    border:3px solid white;
+    width:720px;
+    }
+
+#vlcplayer
+    {
+    position:relative;
+    width:720px;
+    }
+
+#vlcobject
+    {
+    position:relative;
+    }
+
+#screen
+    {
+    position:relative;
+    width:720px;
+    height:540px;
+    }
+
+#vlc
+    {
+    position:relative;
+    width:720px;
+    height:540px;
+    }
+
+
+#vlccontrolpanel
+    {
+    position:relative;
+    z-index:1;
+    }
+
+#seekbar
+    {
+    position:relative;
+    background-image:url("Imagesv092/Seekbar/vlcconsoleguiseekbar720pa.png");
+    height:35px;
+    }
+#leftseekarrow
+    {
+    position:absolute;
+    top:3px;
+    left:0px;
+    }
+#seekbarleft
+    {
+    position:absolute;
+    top:3px;
+    left:26px;
+    }
+#seekslider
+    {
+    position:absolute;
+    top:6px;
+    left:27px;
+    z-index:3;
+    }
+#seekbarright
+    {
+    position:absolute;
+    top:3px;
+    right:26px;
+    }
+#rightseekarrow
+    {
+    position:absolute;
+    top:3px;
+    right:0px;
+    }
+
+#controlbar
+    {
+    position:relative;
+    background-image:url("Imagesv092/Controlbar/vlcconsoleguicontrolbar720pa.png");
+    height:40px;
+    }
+#playpause
+    {
+    position:absolute;
+    top:2px;
+    left:8px;
+    }
+#stop
+    {
+    position:absolute;
+    top:5px;
+    left:60px;
+    }
+#fullscreen
+    {
+    position:absolute;
+    top:5px;
+    left:90px;
+    }
+#mute
+    {
+    position:absolute;
+    top:5px;
+    right:94px;
+    }
+#volumebar
+    {
+    position:absolute;
+    top:2px;
+    right:10px;
+    }
+
+#infobar
+    {
+    position:relative;
+    background-image:url("Imagesv092/Infobar/vlcconsoleguiinfobar720p.png");
+    height:25px;
+    }
+#vlcstatus
+    {
+    position:absolute;
+    top:5px;
+    left:6px;
+    }
+#infobaredgeright
+    {
+    position:absolute;
+    top:0px;
+    right:0px;
+    }
+#rate
+    {
+    position:absolute;
+    top:6px;
+    right:102px;
+    }
+#infobaredgeleft
+    {
+    position:absolute;
+    top:0px;
+    left:0px;
+    }
+#clock
+    {
+    position:absolute;
+    top:6px;
+    right:26px;
+    }

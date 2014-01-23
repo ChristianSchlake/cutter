@@ -1,0 +1,1 @@
+mkvmerge "aufnahmen/ProSieben/How_I_met_your_mother/how_i_met_your_mother_s01_e01.mkv" --split parts:367s-858s,+1298s-2046s -o "geschnitten/how_i_met_your_mother_s01_e01.mkv"; mv "aufnahmen/ProSieben/How_I_met_your_mother/how_i_met_your_mother_s01_e01.mkv" "aufnahmen/ProSieben/How_I_met_your_mother/how_i_met_your_mother_s01_e01.mkv.old"

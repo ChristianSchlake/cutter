@@ -1,0 +1,39 @@
+CHANGELOG
+
+2010-06-01  Ureni Atsiko  <ureniatsiko@yahoo.com>
+
+    * Format: the control panel has been split into two javascript 
+      libraries, a CSS file, and an HTML file containing an example
+      of the required HTML to be inserted into the webpage.
+
+
+    * Functions: VWCP contains the minimum number of fucntions
+      to support basic webplayer features: play/pause, stop
+      and fullscreen.  It also supports seek by dragging the slider
+      in the seek bar or clicking on the bar.  
+
+      Be aware that the slide seek functions have a known bug that 
+      if the mouse moves off the slider and displays a black circle 
+      with a line through it, the seek function will not turn off 
+      and the slider will jiggle when the mouse moves over it until 
+      you click on the seekbar again.
+
+
+    * Display: This version of VWCP can be embedded anywhere
+      in the webpage.  It will autodetect its position on page
+      load to correct for any differences in the default position
+      (0,0) and the actual position.
+
+      The default display size in the page is 720x540.  You may resize
+      VWCP to your desired dimensions by altering the display 
+      variables in the vwcpconfig.js file.
+
+
+    * Playlist: All playlist functions have been disabled 
+      in this version of VWCP.  It has been modified to 
+      support single-video media player functions with the minimum
+      filesize and number of files.
+
+
+    * Styling: VWCP has been re-written with CSS styling in order
+      to better support browser-based zooming.

@@ -29,3 +29,17 @@
 		</tbody>
 	</table>
 </div>
+
+<div class="row">
+	<?php
+		$file = file("cutList.sh");
+		echo "<form action=\"changeCutList.php\" method=\"post\">";
+			echo "<textarea Name=\"update\" placeholder=\"small-12.columns\" wrap=\"off\">";
+			foreach($file as $text) {
+				echo $text;
+			} 
+			echo "</textarea>";
+			echo "<input name=\"Submit\" type=\"submit\" value=\"Update\" />\n"; 
+		echo "</form>";
+	?>
+</div>

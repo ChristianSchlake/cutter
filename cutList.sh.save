@@ -1,6 +1,0 @@
-
-0s-180s,+360s-540s
-
-121s-241s,+421s-541s
-61s-181sundefined
-mkvmerge aufnahmen/ProSieben/the_big_bang_theory/cutList.sh --split parts: -o /nmkvmerge aufnahmen/ProSieben/the_big_bang_theory/cutList.sh --split parts:0s-120s,+240s-480s -o /n

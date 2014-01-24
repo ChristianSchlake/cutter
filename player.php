@@ -97,15 +97,33 @@
 	}
 	function VLCadditem() {
 		var vlc = document.getElementById("vlc");
-		var dateiName = document.getElementById("dateiName").innerHTML;
-		var options = new Array(":aspect-ratio=4:3", "--rtsp-tcp");
-		var id = vlc.playlist.add(dateiName, "fancy name", options);
-		schnittmarken="";
-		nextStep="dateiAnfang";
-		vlc.playlist.playItem(id);		
-		registerVLCEvent('MediaPlayerTimeChanged', createCutList);
-		document.getElementById("schnittmarken").value = (schnittmarken);
+		var playButton = document.getElementById("playbutton");
+		if (vlc.playlist.items.count==0){			
+			var dateiName = document.getElementById("dateiName").innerHTML;
+			var options = new Array(":aspect-ratio=4:3", "--rtsp-tcp");
+			var id = vlc.playlist.add(dateiName, "fancy name", options);		
+			schnittmarken="";
+			nextStep="dateiAnfang";
+			vlc.playlist.playItem(id);		
+			registerVLCEvent('MediaPlayerTimeChanged', createCutList);
+			document.getElementById("schnittmarken").value = (schnittmarken);						
+		} else {
+			vlc.playlist.togglePause();			
+		}
+		displayPauseState();
 	}
+	function displayPauseState() {
+		var vlc = document.getElementById("vlc");
+		var playButton = document.getElementById("playbutton");		
+		switch(vlc.playlist.isPlaying) {
+			case false:
+		  		playButton.setAttribute("class", "step fi-play size-48");
+		  		break;
+			case true:
+				playButton.setAttribute("class", "step fi-pause size-48");
+				break;
+		}	
+	}	
 	function navigateKeyDown(event) {
 		var keyCode = ('which' in event) ? event.which : event.keyCode;
 		if (keyCode == 17) {
@@ -116,8 +134,8 @@
 		}
 		if (keyCode == 13) {
 			schnittmarken = document.getElementById("schnittmarken").value;
-			var position = Math.floor(vlc.input.time/1000);
-			var positionS = position.toString();
+			var positionD = Math.floor(vlc.input.time/1000);
+			var positionS = positionD.toString();
 			switch(nextStep) {
 				case "dateiAnfang":
 			  		schnittmarken=positionS;
@@ -279,6 +297,7 @@
 	    if (keyCode == 32) {
 	    	var vlc = document.getElementById("vlc");
 	    	vlc.Pause;
+	    	displayPauseState();
 	    }
 	}
     function VLCpause() {
@@ -346,8 +365,8 @@
 
 <div class="row">
 	<ul class="button-group">
-		<li><a href="#" class="button" onclick="VLCadditem();"><i class="step fi-play size-48"></i></a></li>
-		<li><a href="#" class="button" onclick="VLCtogglePause();"><i class="step fi-pause size-48"></i></a></li>
+		<li><a href="#" class="button" onclick="VLCadditem();"><i id="playbutton" class="step fi-play size-48"></i></a></li>
+		<!--li><a href="#" class="button" onclick="VLCtogglePause();"><i class="step fi-pause size-48"></i></a></li-->
 		<li><a href="#" class="button" onclick="VLCtoggleMute();"><i class="step fi-volume-strike size-48"></i></a></li>
 		<li><a href="#" class="button" onclick="nextCut(1);"><i class="step fi-previous size-48"></i></a></li>		
 		<li><a href="#" class="button" onclick="nextCut(-1);"><i class="step fi-next size-48"></i></a></li>		

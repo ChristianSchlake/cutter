@@ -120,6 +120,11 @@
 										echo "<td>".$datei."</td>";																			
 										echo "<td><button class=\"button small\" type=\"Submit\"><i class=\"step fi-play-video size-48\"></i></button></td>";
 									echo "</form>";
+									echo "<form action=\"renameFiles.php\" method=\"GET\" class=\"custom\">";
+									echo "<input type=\"hidden\" value=\"".$ordner.$datei."\" name=\"datei\">";
+									echo "<input type=\"hidden\" value=\"".$ordner."\" name=\"ordner\">";															
+										echo "<td><button class=\"button small\" type=\"Submit\"><i class=\"step fi-page-edit size-48\"></i></button></td>";
+									echo "</form>";
 								echo "</tr>";
 							}
 						}

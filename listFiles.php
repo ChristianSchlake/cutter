@@ -55,44 +55,46 @@
 <nav class="top-bar" data-topbar data-options="is_hover:true">
 	<ul class="title-area">
 		<li class="name">
-			<h1><a href="main.php"><i class="fi-refresh"></i> TV-Scraper</a></h1>
+			<h1><a href="listFiles.php"><i class="fi-refresh"></i> Video-Cutter</a></h1>
 		</li>
 		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
 	</ul>
 	<section class="top-bar-section">
 		<ul class="left">
-			<a class="button secondary round" href="listFiles.php" data-reveal-id="cutListModal"><i class="fi-list-bullet"></i> Schnittliste anzeigen</a>
+			<a class="button secondary round" href="listFiles.php" data-reveal-id="cutListModal"><i class="fi-list-bullet"></i> Schnittliste anzeigen</a>			
+			<a class="button secondary round" href="executeCutList.php"><i class="fi-crop"></i> Schnitt starten</a>
 		</ul>
 	</section>			
 </nav>
-
-<fieldset>
-	<legend>Ordner</legend>
-	<table>
-		<thead>
-			<tr>
-				<th>Ordnername</th>
-			</tr>
-		</thead>				
-		<body>
-			<?php	
-				$alledateien = scandir($ordner); //Ordner "files" auslesen
-				// Ordner eintragen	
-				foreach ($alledateien as $datei) { // Ausgabeschleife		
-					if ($datei[0]!=".") {
-						$dateiinfo = pathinfo($ordner.$datei);
-						if (is_dir($ordner.$datei)){
-							echo "<tr>";
-								echo "<td><a href=\"listFiles.php?ordner=".$ordner.$datei."\">".$datei."</a></td>";
-							echo "</tr>";
+<div class="row">
+	<fieldset>
+		<legend>Ordner</legend>
+		<table>
+			<thead>
+				<tr>
+					<th>Ordnername</th>
+				</tr>
+			</thead>				
+			<body>
+				<?php						
+					$alledateien = scandir($ordner); //Ordner "files" auslesen
+					// Ordner eintragen	
+					foreach ($alledateien as $datei) { // Ausgabeschleife		
+						if ($datei[0]!=".") {
+							$dateiinfo = pathinfo($ordner.$datei);
+							if (is_dir($ordner.$datei)){
+								echo "<tr>";
+									echo "<td><a href=\"listFiles.php?ordner=".$ordner.$datei."\">".$datei."</a></td>";
+								echo "</tr>";
+							}
 						}
-					}
-				};
-			?>
-		</body>
-	</table>
-</fieldset>
-<div class=\"row">
+					};
+				?>
+			</body>
+		</table>
+	</fieldset>
+</div>
+<div class="row">
 	<fieldset>
 		<?php
 		echo "<legend>Dateien</legend>";
@@ -105,17 +107,18 @@
 			</thead>				
 			<body>	
 			<?php
+				$alledateien = scandir($ordner); //Ordner "files" auslesen
 				foreach ($alledateien as $datei) { // Ausgabeschleife
-					if ($datei != "." AND $datei != "..") {
+					if ($datei[0] != "." ) {
+						$dateiinfo = pathinfo($ordner.$datei);
 						if(in_array($dateiinfo['extension'],$dateitypen)) {						
 							if (!is_dir($ordner.$datei)){
 								echo "<tr>";
 									echo "<form action=\"player.php\" method=\"POST\" class=\"custom\">";
 									echo "<input type=\"hidden\" value=\"".$ordner.$datei."\" name=\"datei\">";
 									echo "<input type=\"hidden\" value=\"".$ordner."\" name=\"ordner\">";
-										echo "<td>".$datei."<td>";									
-										echo "<button class=\"button small\" type=\"Submit\"><i class=\"step fi-play-video size-48\"></i></button>";																																						
-										echo "</td>";
+										echo "<td>".$datei."</td>";																			
+										echo "<td><button class=\"button small\" type=\"Submit\"><i class=\"step fi-play-video size-48\"></i></button></td>";
 									echo "</form>";
 								echo "</tr>";
 							}
@@ -132,11 +135,17 @@
 	<fieldset>
 	<legend>Schnittliste</legend>
 		<?php
+			$showEdit=0;
 			include("cutList.php");
 		?>		
 	</fieldset>
 </div>
 
+<!--div id="executeCutListModal" class="reveal-modal" data-reveal>
+	<?php
+		include("executeCutList.php");
+	?>
+</div-->
 
 <?php
 	mysql_close($verbindung);

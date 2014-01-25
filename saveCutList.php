@@ -48,6 +48,7 @@ echo "<br>";
 echo "-----<br>";
 $schnittmarken=$befehl;
 $fp = fopen("cutList.sh","a");
+//$befehl = "mkvmerge \"".$datei."\" --split parts:".$schnittmarken." -o \"geschnitten/".basename($datei)."\"; mv \"".$datei."\" \"".$datei.".old\";cat \"cutListOutput.txt\" >> \"cutListOutput.old\";rm \"cutListOutput.txt\"";
 $befehl = "mkvmerge \"".$datei."\" --split parts:".$schnittmarken." -o \"geschnitten/".basename($datei)."\"; mv \"".$datei."\" \"".$datei.".old\"";
 echo $befehl."<br>";
 fwrite($fp, $befehl."\n");

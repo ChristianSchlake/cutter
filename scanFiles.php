@@ -70,7 +70,8 @@
 	</ul>
 	<section class="top-bar-section">
 		<ul class="left">
-			<a class="button secondary round" href="scanFiles.php" data-reveal-id="suchModal"><i class="fi-page-add"></i> Serie auswählen</a>			
+			<a class="button secondary round" href="scanFiles.php" data-reveal-id="suchModal"><i class="fi-page-add"></i> Serie auswählen</a>
+			executeCutListModal
 			<?php
 				echo "<a class=\"button secondary round\" href=\"scanFiles.php?ordner=".$ordner."&serienID=".$serienID."&rename=1\"><i class=\"fi-link\"></i> rename Files</a>";
 				echo "<a class=\"button secondary round\" href=\"scanFiles.php?ordner=".$ordner."&serienID=".$serienID."\"><i class=\"fi-link\"></i> sicht aktualisieren</a>";
@@ -229,7 +230,6 @@
 		?>		
 	</fieldset>
 </div>
-
 
 <?php
 	mysql_close($verbindung);

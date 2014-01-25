@@ -1,17 +1,18 @@
 <?php
 	$datei = file("cutList.sh");
+	$fileExistsBool=false
 ?>
-
 <div class="row">
 	<table>
 		<thead>
 			<tr>
 				<th>#</th>
-				<th>Zieldatei</th>
 				<th>Schnitte</th>
+				<th>Zieldatei</th>
+				<th>status</th>				
 			</tr>
 		</thead>
-		<tbody>			
+		<tbody>
 			<?php
 				$i=0;				
 				foreach($datei AS $zeile) {
@@ -21,25 +22,32 @@
 					$s2=split(" -o", $s2[1]);
 					echo "<tr>";
 					echo "<td>".$i."</td>";
-					echo "<td>".basename($s[3])."</td>";
 					echo "<td>".$s2[0]."</td>";
+					echo "<td>".basename($s[3])."</td>";
+					if (file_exists($s[3])==true) {
+						echo "<td><i class=\"fi-check\"></i></td>";
+						$fileExistsBool=true;						
+					} else {
+						echo "<td><i class=\"fi-x\"></i></td>";						
+					};					
 					echo "</tr>";
 				}
 			?>
 		</tbody>
 	</table>
 </div>
-
-<div class="row">
-	<?php
-		$file = file("cutList.sh");
-		echo "<form action=\"changeCutList.php\" method=\"post\">";
-			echo "<textarea Name=\"update\" placeholder=\"small-12.columns\" wrap=\"off\">";
-			foreach($file as $text) {
-				echo $text;
-			} 
-			echo "</textarea>";
-			echo "<input name=\"Submit\" type=\"submit\" value=\"Update\" />\n"; 
-		echo "</form>";
-	?>
-</div>
+<?php
+	echo "<div class= \"row\">";
+		if ($showEdit==0) {
+			$file = file("cutList.sh");
+			echo "<form action=\"changeCutList.php\" method=\"post\">";
+				echo "<textarea Name=\"update\" placeholder=\"es sind keine Schnittmarken eingetragen\" wrap=\"off\">";
+				foreach($file as $text) {
+					echo $text;
+				} 
+				echo "</textarea>";
+				echo "<input name=\"Submit\" type=\"submit\" value=\"Update\" />\n"; 
+			echo "</form>";
+		}
+	echo "</div>";
+?>

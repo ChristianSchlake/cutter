@@ -47,8 +47,6 @@
 	</section>
 </nav>
 
-
-
 <div id="suchModal" class="reveal-modal" data-reveal>
 	<fieldset>
 		<legend>TV-Programm aktualisieren</legend>

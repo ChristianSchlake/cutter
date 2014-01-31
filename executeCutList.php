@@ -39,7 +39,7 @@
 	
 	<div class="row">
 		<fieldset>
-			<legend>Schnittprogramm</legend>			
+			<legend>Schnittprogramm</legend>
 			<?php
 				$pid="";
 				$file = file("cutListOutput.pid");
@@ -63,6 +63,15 @@
 				}
 			?>
 			<br><a href="listFiles.php" class="button"><i class="fi-arrow-left"></i> zurück</a>
+		</fieldset>
+	</div>
+
+	<div class="row">
+		<fieldset>
+			<legend>Logfile - letzte Zeile</legend>
+			<?php
+				include("logFile.php");
+			?>
 		</fieldset>
 	</div>
 		

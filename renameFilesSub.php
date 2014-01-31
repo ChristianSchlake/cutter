@@ -1,9 +1,12 @@
+<?php
+	$dateitypen= array("mpg", "mkv");
+?>
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf8"/>
 	<meta name="viewport" content="width=device-width">
 
 	<?php
-		echo "<title>TV-Scraper</title>";
+		echo "<title>TV-Scraper</title>";		
 	?>
 
 	<link rel="stylesheet" href="css/foundation.css">
@@ -24,7 +27,31 @@
 </head>
 
 <body>
-	<?php	
+	<?php
+		function directoryToArray($directory, $recursive) {
+			$array_items = array();
+			if ($handle = opendir($directory)) {
+				while (false !== ($file = readdir($handle))) {
+				    if ($file != "." && $file != ".." && $file[0] != ".") {
+				        if (is_dir($directory. "/" . $file)) {
+				            if($recursive) {
+				                $array_items = array_merge($array_items, directoryToArray($directory. "/" . $file, $recursive));
+				            }
+				            $file = $directory . "/" . $file;
+				            $array_items[] = preg_replace("/\/\//si", "/", $file);
+				        } else {
+				            $file = $directory . "/" . $file;
+				            $array_items[] = preg_replace("/\/\//si", "/", $file);
+				        }
+				    }
+				}
+				closedir($handle);
+			}
+			return $array_items;
+		}
+	?>
+
+	<?php
 	/*-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -*/
 	/* Variablen eintragen */
 		foreach ($_POST as $key => $value) {
@@ -46,7 +73,18 @@
 		$dateiNeu=$ordner.$dateiNeu;
 		if ( (file_exists($dateiAlt)==true) AND (file_exists($dateiNeu)==false) ) {
 			rename($dateiAlt, $dateiNeu);
-			header("Location: listFiles.php?ordner=".$ordner);
+			echo "<div class=\"row\">";
+				echo "<fieldset>";
+					echo "<legend>Datei erfolgreich umbenannt</legend>";
+					echo "<div class=\"small-12 large-12 columns\">";
+						echo "Originalname: ".$dateiAlt."<br>";
+						echo "neuer Name: ".$dateiNeu."<br>";
+					echo "<div>";
+					echo "<div class=\"small-12 large-12 columns\">";
+						echo "<a class=\"button expand\" href=\"listFiles.php?ordner=".$ordner."\"><i class=\"step fi-arrow-left\"></i> zurück</a>";
+					echo "<div>";
+				echo "</fieldset>";
+			echo "<div>";
 		} else {
 			echo "<div class=\"row\">";
 				echo "<fieldset>";
@@ -61,7 +99,42 @@
 				echo "</fieldset>";
 			echo "<div>";
 		}
+		$array_items = directoryToArray("filme", true);
+		$arrPercentage = array();
+		foreach ($array_items as $key => $fileX) {
+			$bName1=basename($fileX);
+			$bName2=basename($dateiNeu);
+			similar_text($bName1, $bName2, $percentage);
+			$arrPercentage[$key]=$percentage;
+		}
+		array_multisort($arrPercentage,SORT_NUMERIC, SORT_DESC , $array_items, SORT_ASC);
 	?>
+	<div class="row">
+		<table>
+			<thead>
+				<tr>
+					<th>Dateiname</th>
+					<th>Ähnlichkeit</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php				
+					foreach ($array_items as $key => $fileX) {
+						$dateiinfo = pathinfo($fileX);
+						if(in_array($dateiinfo['extension'],$dateitypen)) {
+							$bName=basename($fileX);
+							echo "<tr>";
+							echo "<td>".basename($fileX)."</td>";
+							$perc=explode(".",$arrPercentage[$key]);
+							echo "<td>".$perc[0]."%</td>";
+							echo "<tr>";
+						}
+
+					}
+				?>
+			</tbody>
+		</table>
+	</row>
 
 
 	<script src="js/vendor/jquery.js"></script>

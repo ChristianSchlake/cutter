@@ -256,39 +256,39 @@
 	    	VLCtogglePause ();
 	    }
 		// >
-		if (keyCode == 39  && strgStatus != 1) {
+		if (keyCode == 39  && strgStatus == 1) {
 	    	var vlc = document.getElementById("vlc");
 			VLCpause();
 	    	vlc.input.time = vlc.input.time + 1000;
 	    	showSeekBar();
 	    }
 	    // <
-	    if (keyCode == 37  && strgStatus != 1) {
-	    	var vlc = documet.getElementById("vlc");
+		if (keyCode == 37  && strgStatus == 1) {
+	    	var vlc = document.getElementById("vlc");
 			VLCpause();
 	    	vlc.input.time = vlc.input.time - 1000;
 	    	showSeekBar();
 	    }
 	    // >>
-	    if (keyCode == 39 && strgStatus == 1) {
+	    if (keyCode == 38 && strgStatus == 1) {
 	    	var vlc = document.getElementById("vlc");
 	    	vlc.input.time = vlc.input.time + 10000;
 	    	showSeekBar();
 	    }
 	    // <<
-	    if (keyCode == 37 && strgStatus == 1) {
+	    if (keyCode == 40 && strgStatus == 1) {
 	    	var vlc = document.getElementById("vlc");
 	    	vlc.input.time = vlc.input.time - 10000;
 	    	showSeekBar();
 	    }
-	    // >>>>
-	    if (keyCode == 38 && strgStatus == 1) {
+	    // >>>
+	    if (keyCode == 38 && shiftStatus == 1) {
 	    	var vlc = document.getElementById("vlc");
 	    	vlc.input.time = vlc.input.time + 60000;
 	    	showSeekBar();
 	    }
-	    // >>>>
-	    if (keyCode == 40 && strgStatus == 1) {
+	    // <<<
+	    if (keyCode == 40 && shiftStatus == 1) {
 	    	var vlc = document.getElementById("vlc");
 	    	vlc.input.time = vlc.input.time - 60000;
 	    	showSeekBar();

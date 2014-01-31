@@ -146,12 +146,6 @@
 	</fieldset>
 </div>
 
-<!--div id="executeCutListModal" class="reveal-modal" data-reveal>
-	<?php
-		include("executeCutList.php");
-	?>
-</div-->
-
 <?php
 	mysql_close($verbindung);
 ?>

@@ -168,7 +168,7 @@
 									}
 									$episode=str_pad($episode, 2, "0", STR_PAD_LEFT);
 									$staffel=str_pad($staffel, 2, "0", STR_PAD_LEFT);
-									$dateiName=$serienDateiName."s".$staffel."_e".$episode.".".$dateiinfo['extension'];
+									$dateiName=$serienDateiName."s".$staffel."e".$episode.".".$dateiinfo['extension'];
 									$fileX=$serienOrdner."/".$dateiName;
 									if ($serienName!="") {
 										if ($rename=="1") {

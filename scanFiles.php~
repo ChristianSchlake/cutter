@@ -128,29 +128,24 @@
 							$dateiinfo = pathinfo($ordner.$datei);
 							if(in_array($dateiinfo['extension'],$dateitypen)) {						
 								if (!is_dir($ordner.$datei)){
-									echo "<td>",$datei,"</td>"; //Ausgabe Einzeldatei
+			//						echo "<td>",$datei,"</td>"; //Ausgabe Einzeldatei
 									// How-I-Met-Your-Mother.2014-01-02.10-29.mkv
 									$datum=explode(".",$datei);
 									//print_r($datei);
-                                                                        echo "<tr>";
-//                                                                      echo "<td>Ausgabedatei: ",$datei,"</td>"; //Ausgabe Einzeldatei
-//									echo "<td>Datum 1: ",$datum[1],"</td>";
-//									echo "<td>Datum 2: ",$datum[2],"</td>";
+			//						echo "<td>",$datum[1],"</td>";
+			//						echo "<td>",$datum[2],"</td>";
 									$datumStart=strtotime($datum[1]." ".str_replace("-", ":", $datum[2]));
 									$datumStart=$datumStart-300;
 									$datumEnde=$datumStart+600;
 									$datumStart=date("o-m-d H:i", $datumStart); 
 									$datumEnde=date("o-m-d H:i", $datumEnde);
-//                                                                      echo "<td>Start 2:",$datumStart,"</td>";
-//                                                                      echo "<td>Ende 2:",$datumEnde,"</td>";
 									// Folge in der Datenbank suchen
 									//abfrage= "STR_TO_DATE('".$datumX[1]."','%d.%m.%Y')";
 									
-									$src_tz = new DateTimeZone('UTC');
-									//$src_tz = new DateTimeZone('Europe/Berlin');
+									//$src_tz = new DateTimeZone('UTC');
+									$src_tz = new DateTimeZone('Europe/Berlin');
 									$dest_tz = new DateTimeZone('Europe/Berlin');
-
-
+									
 									$dt = new DateTime($datumStart, $src_tz);
 									$dt->setTimeZone($dest_tz);
 									$datumStart=$dt->format('Y-m-d H:i:s');
@@ -158,13 +153,12 @@
 									$dt = new DateTime($datumEnde, $src_tz);
 									$dt->setTimeZone($dest_tz);
 									$datumEnde=$dt->format('Y-m-d H:i:s');
-//                                                                echo "<td>Start:",$datumStart,"</td>";
-//   								echo "<td>Ende: ",$datumEnde,"</td>";
+									
+			//						echo "<td>",$datumStart,"</td>";
+			//						echo "<td>",$datumEnde,"</td>";
 									$abfrage="SELECT id, datumVon, datumBis, sender, serien, staffel, episode, titel FROM `DMS` WHERE datumVon>STR_TO_DATE('".$datumStart."','%Y-%m-%d %H:%i')";
 									$abfrage=$abfrage." AND datumVon < STR_TO_DATE('".$datumEnde."','%Y-%m-%d %H:%i')";
 									$abfrage=$abfrage." AND serien='".$serienID."' LIMIT 0,1";
-//									echo "<td>",$abfrage,"</td>";
-		                                                        echo "</tr>";
 									$ergebnis = mysql_query($abfrage);
 									$serienName="";
 									while($row = mysql_fetch_object($ergebnis)) {

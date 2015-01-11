@@ -1,1 +1,0 @@
-mkvmerge "aufnahmen/ProSieben/300.2013-12-01.21-30.mkv" --split parts:167s-1895s,+2501s-4832s,+5391s-6863s,+7514s-8250s -o "geschnitten/300.2013-12-01.21-30.mkv"; mv "aufnahmen/ProSieben/300.2013-12-01.21-30.mkv" "aufnahmen/ProSieben/300.2013-12-01.21-30.mkv.old"

@@ -1,7 +1,7 @@
 <?php
-	$serverhost="192.168.2.111";
-        $db_user="tv";
-        $db_pass="mrF56TuYuJruBHhP";
+	$serverhost="localhost";
+        $db_user="somebody";
+        $db_pass="eFQVMXuFfyNafJWm";
         $db_database="tv";
 	$verbindung = mysql_connect ($serverhost,$db_user,$db_pass) or die ("keine Verbindung möglich. Benutzername oder Passwort sind falsch");
 

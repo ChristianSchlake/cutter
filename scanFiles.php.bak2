@@ -142,8 +142,7 @@
 									// Folge in der Datenbank suchen
 									//abfrage= "STR_TO_DATE('".$datumX[1]."','%d.%m.%Y')";
 									
-									//$src_tz = new DateTimeZone('UTC');
-									$src_tz = new DateTimeZone('Europe/Berlin');
+									$src_tz = new DateTimeZone('UTC');
 									$dest_tz = new DateTimeZone('Europe/Berlin');
 									
 									$dt = new DateTime($datumStart, $src_tz);

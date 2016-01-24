@@ -31,7 +31,7 @@
 			case 'serienID':
 				$serienID=$value;
 				$abfrage="SELECT serienURL, serien FROM serien WHERE serienID=".$serienID;
-				$ergebnis = mysqli_query($verbindung, $abfrage);
+				$ergebnis = mysqli_query($verbindung, ($abfrage);
 				while($row = mysqli_fetch_object($ergebnis)) {
 					$serienURL=$row->serienURL;
 					$serienName=$row->serien;
@@ -81,7 +81,7 @@
 					$anzahlSeiten=0;
 					$anzahlEintraege=0;
 					for ($x = $anzahlSeitenZurueck; $x >= 1; $x--) {
-						$MaxDateVon=mysqli_query($verbindung, "SELECT MAX(datumVon) FROM DMS WHERE serien=\"".$serienID."\"");
+						$MaxDateVon=mysqli_query($verbindung, ("SELECT MAX(datumVon) FROM DMS WHERE serien=\"".$serienID."\"");
 						$MaxDateVon=mysqli_fetch_array($MaxDateVon, MYSQL_BOTH);
 						$MaxDateVon=$MaxDateVon[0];	
 						$MaxDateVon=strtotime($MaxDateVon);
@@ -176,7 +176,7 @@
 										echo "<td>NEU</td>";
 										if ($ausfuehren=="1") {
 											//echo $abfrage;
-											$eintragen = mysqli_query($verbindung, $abfrage);	
+											$eintragen = mysqli_query($verbindung, ($abfrage);	
 										}
 										
 									} else {

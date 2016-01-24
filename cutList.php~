@@ -17,9 +17,9 @@
 				$i=0;				
 				foreach($datei AS $zeile) {
 					$i++;
-					$s=explode("\"", $zeile);
-					$s2=explode(":", $s[2]);
-					$s2=explode(" -o", $s2[1]);
+					$s=split("\"", $zeile);
+					$s2=split(":", $s[2]);
+					$s2=split(" -o", $s2[1]);
 					echo "<tr>";
 					echo "<td>".$i."</td>";
 					echo "<td>".$s2[0]."</td>";

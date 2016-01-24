@@ -122,6 +122,7 @@
 		vlc.playlist.togglePause();
 	}
 	function VLCadditem() {
+		alert("ter")
 		var vlc = document.getElementById("vlc");
 		var playButton = document.getElementById("playbutton");
 		if (vlc.playlist.items.count==0){			

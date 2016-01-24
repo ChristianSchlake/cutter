@@ -3,7 +3,7 @@
 		<div class="small-12 large-8 columns">
 			<?php
 				$abfrage="SELECT serienID, serien, serienURL FROM serien ORDER BY serien";
-				$ergebnis = mysqli_query($verbindung, $abfrage);
+				$ergebnis = mysqli_query($verbindung, ($abfrage);
 			?>
 			<label>Serie</label>				
 			<select class="medium" name="serienID">

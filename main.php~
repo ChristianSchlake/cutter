@@ -63,7 +63,7 @@
 
 
 <?php
-	mysqli_close($verbindung);
+	mysql_close($verbindung);
 ?>
 
 

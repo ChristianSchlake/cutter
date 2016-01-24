@@ -22,7 +22,7 @@
 <?php
 $befehl="";
 $i=0;
-$schnittmarken=explode(",", $schnittmarken);
+$schnittmarken=split(",", $schnittmarken);
 print_r($schnittmarken);
 echo "<br>";
 echo "-----<br>";

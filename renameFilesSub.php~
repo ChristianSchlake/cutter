@@ -93,7 +93,7 @@
 							echo "<form action=\"player.php\" method=\"POST\" class=\"custom\">";
 								echo "<input type=\"hidden\" value=\"".$dateiNeu."\" name=\"datei\">";
 								echo "<input type=\"hidden\" value=\"".$ordner."\" name=\"ordner\">";
-								echo "<button class=\"button expand\" type=\"Submit\"><i class=\"step fi-page-edit\"></i></button>";
+								echo "<button class=\"button small\" type=\"Submit\"><i class=\"step fi-page-edit\"></i></button>";
 							echo "</form>";
 						echo "</div>";
 					echo "</div>";
@@ -120,7 +120,7 @@
 							echo "<form action=\"player.php\" method=\"POST\" class=\"custom\">";
 								echo "<input type=\"hidden\" value=\"".$dateiNeu."\" name=\"datei\">";
 								echo "<input type=\"hidden\" value=\"".$ordner."\" name=\"ordner\">";
-								echo "<button class=\"button expand\" type=\"Submit\"><i class=\"step fi-page-edit\"></i></button>";
+								echo "<button class=\"button small\" type=\"Submit\"><i class=\"step fi-page-edit\"></i></button>";
 							echo "</form>";
 						echo "</div>";
 					echo "</div>";

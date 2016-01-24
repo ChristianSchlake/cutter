@@ -1,0 +1,2 @@
+mkvmerge "aufnahmen/ProSieben/Trouble_ohne_Paddel.mkv" --split parts:248s-1249s,+1824s-2799s,+3320s-4684s,+4899s-6987s -o "geschnitten/Trouble_ohne_Paddel.mkv"; mv "aufnahmen/ProSieben/Trouble_ohne_Paddel.mkv" "aufnahmen/ProSieben/Trouble_ohne_Paddel.mkv.old"
+mkvmerge "aufnahmen/NDR-FS-NDS-HD/Der_englische_Patient.mkv" --split parts:557s-9692s -o "geschnitten/Der_englische_Patient.mkv"; mv "aufnahmen/NDR-FS-NDS-HD/Der_englische_Patient.mkv" "aufnahmen/NDR-FS-NDS-HD/Der_englische_Patient.mkv.old"

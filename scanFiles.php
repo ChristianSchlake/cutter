@@ -36,8 +36,8 @@
 			case 'serienID':
 				$serienID=$value;
 				$abfrage="SELECT serienDateiName, serien, serienOrdner FROM serien WHERE serienID=".$serienID;
-				$ergebnis = mysql_query($abfrage);
-				while($row = mysql_fetch_object($ergebnis)) {
+				$ergebnis = mysqli_query($verbindung, $abfrage);
+				while($row = mysqli_fetch_object($ergebnis)) {
 					$serienDateiName=$row->serienDateiName;					
 					$serienName=$row->serien;
 					$serienOrdner=$row->serienOrdner;
@@ -128,12 +128,12 @@
 							$dateiinfo = pathinfo($ordner.$datei);
 							if(in_array($dateiinfo['extension'],$dateitypen)) {						
 								if (!is_dir($ordner.$datei)){
-			//						echo "<td>",$datei,"</td>"; //Ausgabe Einzeldatei
+//									echo "<td>",$datei,"</td>"; //Ausgabe Einzeldatei
 									// How-I-Met-Your-Mother.2014-01-02.10-29.mkv
 									$datum=explode(".",$datei);
-									//print_r($datei);
-			//						echo "<td>",$datum[1],"</td>";
-			//						echo "<td>",$datum[2],"</td>";
+									//print_r($datum);
+//									echo "<td>",$datum[1],"</td>";
+//									echo "<td>",$datum[2],"</td>";
 									$datumStart=strtotime($datum[1]." ".str_replace("-", ":", $datum[2]));
 									$datumStart=$datumStart-300;
 									$datumEnde=$datumStart+600;
@@ -142,7 +142,7 @@
 									// Folge in der Datenbank suchen
 									//abfrage= "STR_TO_DATE('".$datumX[1]."','%d.%m.%Y')";
 									
-									//$src_tz = new DateTimeZone('UTC');
+									$src_tz = new DateTimeZone('UTC');
 									$src_tz = new DateTimeZone('Europe/Berlin');
 									$dest_tz = new DateTimeZone('Europe/Berlin');
 									
@@ -154,14 +154,15 @@
 									$dt->setTimeZone($dest_tz);
 									$datumEnde=$dt->format('Y-m-d H:i:s');
 									
-			//						echo "<td>",$datumStart,"</td>";
-			//						echo "<td>",$datumEnde,"</td>";
+//									echo "<td>",$datumStart,"</td>";
+//									echo "<td>",$datumEnde,"</td>";
 									$abfrage="SELECT id, datumVon, datumBis, sender, serien, staffel, episode, titel FROM `DMS` WHERE datumVon>STR_TO_DATE('".$datumStart."','%Y-%m-%d %H:%i')";
 									$abfrage=$abfrage." AND datumVon < STR_TO_DATE('".$datumEnde."','%Y-%m-%d %H:%i')";
 									$abfrage=$abfrage." AND serien='".$serienID."' LIMIT 0,1";
-									$ergebnis = mysql_query($abfrage);
+//									echo $abfrage;
+									$ergebnis = mysqli_query($verbindung, $abfrage);
 									$serienName="";
-									while($row = mysql_fetch_object($ergebnis)) {
+									while($row = mysqli_fetch_object($ergebnis)) {
 										$serienName=$row->titel;
 										$episode=$row->episode;
 										$staffel=$row->staffel;
@@ -233,7 +234,7 @@
 </div>
 
 <?php
-	mysql_close($verbindung);
+	mysqli_close($verbindung);
 ?>
 
 

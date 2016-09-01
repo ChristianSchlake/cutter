@@ -74,9 +74,8 @@
 								$search_seriesID=$confSeriesID[$key];								
 								$fileNewBasename=extractStringBetween(".", ",_Sitcom", $fileNewBasename);								
 								$newName=get_seriesByName($fileNewBasename, $search_seriesID);
-								$fileNewBasename=$confSeriesFileName[$key]."_".$newName[0]."-".$newName[1];
+								$fileNewBasename=$confSeriesFileName[$key]."_".$newName[0]."-".$newName[1].".mkv";
 								$fileNewBasename=remove_sonderzeichen($fileNewBasename);
-								$fileNewBasename=$fileNewBasename.".mkv";
 								echo "<br>Serienname: ".$newName[1];
 								echo "<input type=\"hidden\" value=\"".$confSeriesDirectory[$key]."\" name=\"serienordner\">";
 							}

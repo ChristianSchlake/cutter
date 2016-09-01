@@ -65,6 +65,9 @@
 				case 'ordner':
 					$ordner=$value;
 					break;
+				case 'serienordner':
+					$serienordner=$value;
+					break;				
 			}
 		}
 		if (substr($ordner,-1)!="/") {
@@ -127,7 +130,10 @@
 				echo "</fieldset>";
 			echo "</div>";
 		}
-		$array_items = directoryToArray("filme", true);
+		if (isset($serienordner)==False) {
+			$serienordner="filme";
+		}
+		$array_items = directoryToArray($serienordner, true);
 		$arrPercentage = array();
 		foreach ($array_items as $key => $fileX) {
 			$bName1=basename($fileX);

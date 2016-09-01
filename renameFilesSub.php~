@@ -65,6 +65,9 @@
 				case 'ordner':
 					$ordner=$value;
 					break;
+				case 'serienordner':
+					$serienordner=$value;
+					break;				
 			}
 		}
 		if (substr($ordner,-1)!="/") {
@@ -93,7 +96,7 @@
 							echo "<form action=\"player.php\" method=\"POST\" class=\"custom\">";
 								echo "<input type=\"hidden\" value=\"".$dateiNeu."\" name=\"datei\">";
 								echo "<input type=\"hidden\" value=\"".$ordner."\" name=\"ordner\">";
-								echo "<button class=\"button small\" type=\"Submit\"><i class=\"step fi-page-edit\"></i></button>";
+								echo "<button class=\"button expand\" type=\"Submit\"><i class=\"step fi-page-edit\"></i></button>";
 							echo "</form>";
 						echo "</div>";
 					echo "</div>";
@@ -120,14 +123,17 @@
 							echo "<form action=\"player.php\" method=\"POST\" class=\"custom\">";
 								echo "<input type=\"hidden\" value=\"".$dateiNeu."\" name=\"datei\">";
 								echo "<input type=\"hidden\" value=\"".$ordner."\" name=\"ordner\">";
-								echo "<button class=\"button small\" type=\"Submit\"><i class=\"step fi-page-edit\"></i></button>";
+								echo "<button class=\"button expand\" type=\"Submit\"><i class=\"step fi-page-edit\"></i></button>";
 							echo "</form>";
 						echo "</div>";
 					echo "</div>";
 				echo "</fieldset>";
 			echo "</div>";
 		}
-		$array_items = directoryToArray("filme", true);
+		if not isset($serienordner) {
+			$serienordner="filme";
+		}
+		$array_items = directoryToArray($serienordner, true);
 		$arrPercentage = array();
 		foreach ($array_items as $key => $fileX) {
 			$bName1=basename($fileX);

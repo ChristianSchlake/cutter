@@ -125,6 +125,10 @@
 									echo "<input type=\"hidden\" value=\"".$ordner."\" name=\"ordner\">";															
 										echo "<td><button class=\"button small\" type=\"Submit\"><i class=\"step fi-page-edit size-48\"></i></button></td>";
 									echo "</form>";
+									echo "<form action=\"renameSeries.php\" method=\"POST\" class=\"custom\">";
+										echo "<input type=\"hidden\" value=\"".$ordner."\" name=\"serienordner\">";															
+										echo "<td><button class=\"button small\" type=\"Submit\"><i class=\"step fi-page-edit size-48\"></i></button></td>";
+									echo "</form>";									
 								echo "</tr>";
 							}
 						}

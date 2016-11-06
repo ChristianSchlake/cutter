@@ -1,5 +1,6 @@
 <?php
 	include("sub_init_database.php");
+	include("config.php");
 ?>
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf8"/>
@@ -67,6 +68,56 @@
 		</ul>
 	</section>			
 </nav>
+
+<div class="row">
+	<fieldset>
+		<legend>aktuelle Aufnahmen (TVheadend Server)</legend>		
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Start</th>
+					<th>Stop</th>
+					<th>Status</th>
+				</tr>
+			</thead>				
+			<body>
+				<?php
+					/*
+					Status von TVheadend abfragen
+					*/				
+					$xmlFile = "http://".$TVheadendServer_IP.":".$TVheadendServer_PORT."/status.xml";
+					
+					if (($response_xml_data = file_get_contents($xmlFile))===false){
+						echo "Error fetching XML\n";
+					} else {
+						libxml_use_internal_errors(true);
+						$data = simplexml_load_string($response_xml_data);
+						if (!$data) {
+							echo "Error loading XML\n";
+							foreach(libxml_get_errors() as $error) {
+								echo "\t", $error->message;
+							}
+						} else {
+							foreach ( $data->recordings as $recordings ) {
+								foreach ( $recordings->recording as $recording) {
+									echo "<tr>";
+										echo "<td>".$recording->title."</td>";
+										echo "<td>".$recording->start->date." - ".$recording->start->time."</td>";
+										echo "<td>".$recording->stop->date." - ".$recording->stop->time."</td>";
+										echo "<td>".$recording->status."</td>";
+									echo "</tr>";
+								}
+							}
+						}
+					}
+				?>
+			</body>
+		</table>
+	</fieldset>
+</div>
+
+
 <div class="row">
 	<fieldset>
 		<legend>Ordner</legend>		

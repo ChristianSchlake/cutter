@@ -1,0 +1,2 @@
+mkvmerge "aufnahmen/ProSieben/Georgias_Gesetz.mkv" --split parts:304s-6220s -o "geschnitten/Georgias_Gesetz.mkv"; mv "aufnahmen/ProSieben/Georgias_Gesetz.mkv" "aufnahmen/ProSieben/Georgias_Gesetz.mkv.old"
+mkvmerge "aufnahmen/ProSieben/Flight.mkv" --split parts:307s-1760s,+2155s-3447s,+3800s-5221s,+5666s-6865s,+7250s-8676s,+9109s-9890s -o "geschnitten/Flight.mkv"; mv "aufnahmen/ProSieben/Flight.mkv" "aufnahmen/ProSieben/Flight.mkv.old"

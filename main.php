@@ -1,3 +1,4 @@
+<!--
 <?php
 	include("sub_init_database.php");
 ?>
@@ -75,3 +76,8 @@
   <script>$(document).foundation();</script>  
 
 </body>
+
+-->
+<?php
+	header('Location: listFiles.php?ordner=aufnahmen');
+?>

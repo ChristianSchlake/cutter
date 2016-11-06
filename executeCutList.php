@@ -61,8 +61,8 @@
 						echo "<span class=\"alert label\">es existieren schon einige Zieldateien. Bitte die cutList editieren!</span>";
 					}
 				}
-			?>
-			<br><a href="listFiles.php" class="button"><i class="fi-arrow-left"></i> zurück</a>
+				echo "<br><a href=\"listFiles.php?ordner=".$_GET["ordner"]."\" class=\"button\"><i class=\"fi-arrow-left\"></i> zurück</a>";
+			?>			
 		</fieldset>
 	</div>
 

@@ -46,7 +46,8 @@
 					echo $text;
 				} 
 				echo "</textarea>";
-				echo "<input name=\"Submit\" type=\"submit\" value=\"Update\" />\n"; 
+				echo "<input name=\"Submit\" type=\"submit\" value=\"Update\" />\n";
+				echo "<input type=\"hidden\" value=\"".$ordner."\" name=\"ordner\">"; 
 			echo "</form>";
 		}
 	echo "</div>";

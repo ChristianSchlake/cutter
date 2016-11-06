@@ -1,2 +1,0 @@
-mkvmerge "aufnahmen/ProSieben/Faster.mkv" --split parts:322s-1313s,+1749s-2656s,+3102s-5918s,+6372s-7054s -o "geschnitten/Faster.mkv"; mv "aufnahmen/ProSieben/Faster.mkv" "aufnahmen/ProSieben/Faster.mkv.old"
-mkvmerge "aufnahmen/ProSieben/Exodus_Goetter_und_Koenige.mkv" --split parts:314s-1871s,+2319s-3679s,+4127s-5374s,+5815s-7153s,+7608s-8901s,+9318s-10636s -o "geschnitten/Exodus_Goetter_und_Koenige.mkv"; mv "aufnahmen/ProSieben/Exodus_Goetter_und_Koenige.mkv" "aufnahmen/ProSieben/Exodus_Goetter_und_Koenige.mkv.old"

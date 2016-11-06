@@ -51,18 +51,19 @@
 		$ordner=$ordner."/";
 	}
 ?>
-
 <nav class="top-bar" data-topbar data-options="is_hover:true">
 	<ul class="title-area">
 		<li class="name">
-			<h1><a href="listFiles.php"><i class="fi-refresh"></i> Video-Cutter</a></h1>
+			<h1><a href="main.php"><i class="fi-refresh"></i> Video-Cutter</a></h1>
 		</li>
 		<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
 	</ul>
 	<section class="top-bar-section">
 		<ul class="left">
-			<a class="button secondary round" href="listFiles.php" data-reveal-id="cutListModal"><i class="fi-list-bullet"></i> Schnittliste anzeigen</a>			
-			<a class="button secondary round" href="executeCutList.php"><i class="fi-crop"></i> Schnitt starten</a>
+			<a class="button secondary round" href="listFiles.php" data-reveal-id="cutListModal"><i class="fi-list-bullet"></i> Schnittliste anzeigen</a>
+			<?php			
+			echo "<a class=\"button secondary round\" href=\"executeCutList.php?ordner=".$ordner."\"><i class=\"fi-crop\"></i> Schnitt starten</a>";
+			?>
 		</ul>
 	</section>			
 </nav>

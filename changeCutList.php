@@ -11,5 +11,6 @@
 			echo $text."<br />";
 		}
 	}
-	header("Location: listFiles.php");
+//	header("Location: main.php");
+	header("Location: listFiles.php?ordner=".$_POST["ordner"]);
 ?>

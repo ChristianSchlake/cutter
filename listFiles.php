@@ -69,7 +69,7 @@
 </nav>
 <div class="row">
 	<fieldset>
-		<legend>Ordner</legend>
+		<legend>Ordner</legend>		
 		<table>
 			<thead>
 				<tr>
@@ -77,7 +77,15 @@
 				</tr>
 			</thead>				
 			<body>
-				<?php						
+				<?php
+					$ordner_vorgaenger = substr($ordner,0,strripos(substr($ordner,0,-1),"/"));				
+					if(substr_count($ordner, "/") > 1) {						
+						echo "<tr>";
+							echo "<td><a href=\"listFiles.php?ordner=".$ordner_vorgaenger."\"><i class=\"fi-arrow-up\"></i></a></td>";
+							
+							//echo "<td><a href=\"listFiles.php?ordner=".$ordner_vorgaenger."\">..</a></td>";
+						echo "</tr>";				
+					}
 					$alledateien = scandir($ordner); //Ordner "files" auslesen
 					// Ordner eintragen	
 					foreach ($alledateien as $datei) { // Ausgabeschleife		
@@ -99,7 +107,12 @@
 	<fieldset>
 		<?php
 		echo "<legend>Dateien</legend>";
+		echo "<form action=\"renameSeries.php\" method=\"POST\" class=\"custom\">";
+			echo "<input type=\"hidden\" value=\"".$ordner."\" name=\"serienordner\">";															
+			echo "<td><button class=\"button small\" type=\"Submit\">Serien automatisiert umbenennen</button></td>";
+		echo "</form>";
 		?>
+		
 		<table>
 			<thead>
 				<tr>
@@ -116,20 +129,18 @@
 							if (!is_dir($ordner.$datei)){
 								echo "<tr>";
 									echo "<form action=\"player.php\" method=\"POST\" class=\"custom\">";
-									echo "<input type=\"hidden\" value=\"".$ordner.$datei."\" name=\"datei\">";
-									echo "<input type=\"hidden\" value=\"".$ordner."\" name=\"ordner\">";
+										echo "<input type=\"hidden\" value=\"".$ordner.$datei."\" name=\"datei\">";
+										echo "<input type=\"hidden\" value=\"".$ordner."\" name=\"ordner\">";
 										echo "<td>".$datei."</td>";																			
 										echo "<td><button class=\"button small\" type=\"Submit\"><i class=\"step fi-play-video size-48\"></i></button></td>";
 									echo "</form>";
+					
 									echo "<form action=\"renameFiles.php\" method=\"GET\" class=\"custom\">";
-									echo "<input type=\"hidden\" value=\"".$ordner.$datei."\" name=\"datei\">";
-									echo "<input type=\"hidden\" value=\"".$ordner."\" name=\"ordner\">";															
+										echo "<input type=\"hidden\" value=\"".$ordner.$datei."\" name=\"datei\">";
+										echo "<input type=\"hidden\" value=\"".$ordner."\" name=\"ordner\">";															
 										echo "<td><button class=\"button small\" type=\"Submit\"><i class=\"step fi-page-edit size-48\"></i></button></td>";
 									echo "</form>";
-									echo "<form action=\"renameSeries.php\" method=\"POST\" class=\"custom\">";
-										echo "<input type=\"hidden\" value=\"".$ordner."\" name=\"serienordner\">";															
-										echo "<td><button class=\"button small\" type=\"Submit\"><i class=\"step fi-page-edit size-48\"></i></button></td>";
-									echo "</form>";									
+																		
 								echo "</tr>";
 							}
 						}

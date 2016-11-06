@@ -33,7 +33,7 @@
 </head>
 
 <body>
-	<?php
+	<!--?php
 		function directoryToArray($directory, $recursive) {
 			$array_items = array();
 			if ($handle = opendir($directory)) {
@@ -55,7 +55,7 @@
 			}
 			return $array_items;
 		}
-	?>
+	?-->
 
 	<?php
 	/*-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -*/
@@ -94,29 +94,70 @@
 							es handelt sich um eine Serie
 							*/
 							$search_seriesID=$confSeriesID[$key];
+							$search_seriesDirectory=$confSeriesDirectory[$key];
 							$fileNewBasename=extractStringBetween(".", ",_Sitcom", $fileNewBasename);								
 							$newName=get_seriesByName($fileNewBasename, $search_seriesID);
+							$search_seriesEpisode=$newName[0];
 							$fileNewBasename=$confSeriesFileName[$key]."_".$newName[0]."-".$newName[1];
 							$fileNewBasename=remove_sonderzeichen($fileNewBasename);
 							$fileNewBasename=$fileNewBasename.".mkv";
 							$fileNewBasename=$serienordner.$fileNewBasename;						
-
-							if ( (file_exists($fileX)==true) AND (file_exists($fileNewBasename)==false) ) {
+							/*
+							Prüfen ob die Serie bereits im Original Serienordner vorkommt							
+							*/
+							$fileAlreadyExists=false;
+							$array_items = directoryToArray($search_seriesDirectory, true);
+							//print_r($array_items);
+							foreach ($array_items as $key => $fileSerie) {
+								$fName=basename($fileSerie);
+								$ext = pathinfo($fileSerie, PATHINFO_EXTENSION);
+								if( (substr_count($fName, $search_seriesEpisode)>0) AND (in_array($ext, $dateitypen)==true )) {
+									/*
+									Serie gefunden
+									*/
+									$fileAlreadyExists=true;
+								}
+							}
+							/*
+							Ergebnisse eintragen
+							*/
+							$eintrag=false;
+							if ( (file_exists($fileX)==true) AND (file_exists($fileNewBasename)==false) AND ($fileAlreadyExists==false) ) {
 								rename($fileX, $fileNewBasename);
 								echo "<tr>";
 									echo "<td>".$fileX."</td>";
 									echo "<td>".$fileNewBasename."</td>";
-									echo "<td>erfolgreich kopiert</td>";
+									echo "<td>erfolgreich umbenannt</td>";
 								echo "</tr>";
-							} else {
+								$eintrag=true;
+							}
+							if ( (file_exists($fileX)==true) AND (file_exists($fileNewBasename)==true) AND ($fileAlreadyExists==false) ) {
 								$fileNewBasename=$fileNewBasename.".bak";
 								rename($fileX, $fileNewBasename);
 								echo "<tr>";
 									echo "<td>".$fileX."</td>";
 									echo "<td>".$fileNewBasename."</td>";
-									echo "<td>Datei umbenannt mit Endung '.bak'</td>";
+									echo "<td>Datei existiert im Aufnahmeordner -> umbenannt mit Endung '.bak'</td>";
 								echo "</tr>";
-							}						
+								$eintrag=true;
+							}
+							if ( (file_exists($fileX)==true) AND ($fileAlreadyExists==true) ) {
+								$fileNewBasename=$fileNewBasename.".bak";
+								rename($fileX, $fileNewBasename);
+								echo "<tr>";
+									echo "<td>".$fileX."</td>";
+									echo "<td>".$fileNewBasename."</td>";
+									echo "<td>Datei existiert im Serienordner -> umbenannt mit Endung '.bak'</td>";
+								echo "</tr>";
+								$eintrag=true;
+							}
+							if ( $eintrag==false) {
+								echo "<tr>";
+									echo "<td>".$fileX."</td>";
+									echo "<td></td>";
+									echo "<td>Es wurde keine Aktion ausgeführt</td>";
+								echo "</tr>";
+							}							
 						}
 					}
 				}

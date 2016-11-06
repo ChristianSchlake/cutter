@@ -28,6 +28,10 @@
 
 <body>
 	<?php
+		include("functions.php");
+	?>
+	<--?php
+		--> Moved To functions.php
 		function directoryToArray($directory, $recursive) {
 			$array_items = array();
 			if ($handle = opendir($directory)) {
@@ -49,7 +53,7 @@
 			}
 			return $array_items;
 		}
-	?>
+	?-->
 
 	<?php
 	/*-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -*/

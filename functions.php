@@ -115,4 +115,17 @@
 		}
 		return $array_items;
 	}
+	
+	function found_text_in_file($fileName, $searchstr) {
+		$lines = file($fileName);
+		$ergebnis=false;
+		foreach ($lines as $line) {
+			
+			if(strpos($line, $searchstr) !== false) {
+				$ergebnis=true;
+			}
+		}
+		return $ergebnis;
+	}
 ?>
+

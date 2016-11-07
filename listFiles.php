@@ -180,25 +180,28 @@
 						$dateiinfo = pathinfo($ordner.$datei);
 						if(in_array($dateiinfo['extension'],$dateitypen)) {						
 							if (!is_dir($ordner.$datei)){
-								echo "<tr>";
-									if (found_text_in_file("cutList.sh", $datei) == true) {
-										echo "<td><i class=\"step fi-check\"></i></td>";
-									} else {
-										echo "<td><i class=\"step fi-x\"></i></td>";
-									}
-									echo "<form action=\"player.php\" method=\"POST\" class=\"custom\">";
-										echo "<input type=\"hidden\" value=\"".$ordner.$datei."\" name=\"datei\">";
-										echo "<input type=\"hidden\" value=\"".$ordner."\" name=\"ordner\">";
-										echo "<td>".$datei."</td>";
-										echo "<td><button class=\"button small\" type=\"Submit\"><i class=\"step fi-play-video size-48\"></i></button></td>";
-									echo "</form>";
-					
-									echo "<form action=\"renameFiles.php\" method=\"GET\" class=\"custom\">";
-										echo "<input type=\"hidden\" value=\"".$ordner.$datei."\" name=\"datei\">";
-										echo "<input type=\"hidden\" value=\"".$ordner."\" name=\"ordner\">";															
-										echo "<td><button class=\"button small\" type=\"Submit\"><i class=\"step fi-page-edit size-48\"></i></button></td>";
-									echo "</form>";
-								echo "</tr>";
+								$inCutList=found_text_in_file("cutList.sh", $datei);
+								if ((($inCutList == true ) AND ($showFilesFromCutListInFileList==true)) OR ($inCutList == false)) {
+									echo "<tr>";
+										if ($inCutList == true ) {
+											echo "<td><i class=\"step fi-check\"></i></td>";
+										} else {
+											echo "<td><i class=\"step fi-x\"></i></td>";
+										}
+										echo "<form action=\"player.php\" method=\"POST\" class=\"custom\">";
+											echo "<input type=\"hidden\" value=\"".$ordner.$datei."\" name=\"datei\">";
+											echo "<input type=\"hidden\" value=\"".$ordner."\" name=\"ordner\">";
+											echo "<td>".$datei."</td>";
+											echo "<td><button class=\"button small\" type=\"Submit\"><i class=\"step fi-play-video size-48\"></i></button></td>";
+										echo "</form>";
+						
+										echo "<form action=\"renameFiles.php\" method=\"GET\" class=\"custom\">";
+											echo "<input type=\"hidden\" value=\"".$ordner.$datei."\" name=\"datei\">";
+											echo "<input type=\"hidden\" value=\"".$ordner."\" name=\"ordner\">";															
+											echo "<td><button class=\"button small\" type=\"Submit\"><i class=\"step fi-page-edit size-48\"></i></button></td>";
+										echo "</form>";
+									echo "</tr>";
+								}
 							}
 						}
 					}

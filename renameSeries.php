@@ -57,6 +57,8 @@
 		}
 	?-->
 
+
+
 	<?php
 	/*-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -*/
 	/* Variablen eintragen */
@@ -70,7 +72,31 @@
 		if (substr($serienordner,-1)!="/") {
 			$serienordner=$serienordner."/";
 		}
-
+	?>
+	
+	/*
+	Hauptmenü
+	*/	
+	<nav class="top-bar" data-topbar data-options="is_hover:true">
+		<ul class="title-area">
+			<li class="name">
+				<?php
+					echo "<h1><a href=\"listFiles.php?ordner=".$serienordner."\"><i class=\"fi-refresh\"></i> VLC Cutter</a></h1>";
+				?>
+			</li>
+			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+		</ul>
+		<section class="top-bar-section">
+			<ul class="left">
+				<!--a class="button secondary round" href="player.php" data-reveal-id="cutListModal"><i class="fi-list-bullet"></i> Schnittliste anzeigen</a-->
+				<!--a class="button secondary round" href="main.php" data-reveal-id="suchModal"><i class="fi-page-add"></i> TV-Programm aktualisieren</a>
+				<a class="button secondary round" href="//192.168.2.111/tv"><i class="fi-link"></i> TV-Programm</a>
+				<a class="button secondary round" href="scanFiles.php"><i class="fi-page-edit"></i> Dateinamen setzen</a-->
+			</ul>
+		</section>
+	</nav>
+	
+	<?php
 		/*
 		Ordner nach Serien durchsuchen und die Serie finden
 		*/
@@ -84,12 +110,18 @@
 				echo "</tr>";
 
 				foreach ($array_items as $key => $fileX) {				
-					$fileNewBasename=str_replace("-","_",basename($fileX));								
+					$fileNewBasename=str_replace("-","_",basename($fileX));
+					$keineSerie=false;
 					/*
 					Prüfen ob es sich um eine Serie handelt
 					*/
 					foreach($confSeries as $key => $value) {
-						if (strpos(basename($fileX), $value)!=false) {
+						if (strpos(basename($fileX), $value) === false) {
+							if ($keineSerie == false ) {
+								$keineSerie=true;
+							}							
+						} else {
+							$keineSerie=false;
 							/*
 							es handelt sich um eine Serie
 							*/
@@ -125,8 +157,8 @@
 							if ( (file_exists($fileX)==true) AND (file_exists($fileNewBasename)==false) AND ($fileAlreadyExists==false) ) {
 								rename($fileX, $fileNewBasename);
 								echo "<tr>";
-									echo "<td>".$fileX."</td>";
-									echo "<td>".$fileNewBasename."</td>";
+									echo "<td>".basename($fileX)."</td>";
+									echo "<td>".basename($fileNewBasename)."</td>";
 									echo "<td>erfolgreich umbenannt</td>";
 								echo "</tr>";
 								$eintrag=true;
@@ -135,8 +167,8 @@
 								$fileNewBasename=$fileNewBasename.".bak";
 								rename($fileX, $fileNewBasename);
 								echo "<tr>";
-									echo "<td>".$fileX."</td>";
-									echo "<td>".$fileNewBasename."</td>";
+									echo "<td>".basename($fileX)."</td>";
+									echo "<td>".basename($fileNewBasename)."</td>";
 									echo "<td>Datei existiert im Aufnahmeordner -> umbenannt mit Endung '.bak'</td>";
 								echo "</tr>";
 								$eintrag=true;
@@ -145,24 +177,32 @@
 								$fileNewBasename=$fileNewBasename.".bak";
 								rename($fileX, $fileNewBasename);
 								echo "<tr>";
-									echo "<td>".$fileX."</td>";
-									echo "<td>".$fileNewBasename."</td>";
+									echo "<td>".basename($fileX)."</td>";
+									echo "<td>".basename($fileNewBasename)."</td>";
 									echo "<td>Datei existiert im Serienordner -> umbenannt mit Endung '.bak'</td>";
 								echo "</tr>";
 								$eintrag=true;
 							}
 							if ( $eintrag==false) {
 								echo "<tr>";
-									echo "<td>".$fileX."</td>";
+									echo "<td>".basename($fileX)."</td>";
 									echo "<td></td>";
 									echo "<td>Es wurde keine Aktion ausgeführt</td>";
 								echo "</tr>";
 							}							
 						}
 					}
+					if ( $keineSerie === true ) { 
+						echo "<tr>";
+							echo "<td>".$fileX."</td>";
+							echo "<td></td>";
+							echo "<td>kann keiner Serie zugeordnet werden</td>";
+						echo "</tr>";
+					}					
 				}
 				echo "</table>";
 		}
+		echo $serienordner;
 
 	?>
 
